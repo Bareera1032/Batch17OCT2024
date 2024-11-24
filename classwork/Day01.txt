@@ -1,0 +1,93 @@
+Compilation System:
+
+*preprocessing Phase: it includes header and expand macros, which means exporting the libraries of the header
+
+*Compilation Phase: it checks semantic and syntax errors
+
+*Assembly Phase: converts into binary form which is not runnable
+
+*Linking Phase: file is ready to be loaded into the main memory and excuted
+
+->Process: tasks under execution
+
+->Thread: it is a light weight process and it is a part of process. Each process may contain multiple threads
+
+->multitasking: when we want to perform multiple task under one processor.
+
+->multiprocess: when we want to execute more than one process
+
+->multithreading: when we want to execute more than one function with in a single process
+
+->comments go under text segment in memory
+
+->functions are instack memory
+
+->Between software and hardware there will be an Operating System
+
+-> UNIX OS is made up of 3 parts :
+
+*Kernel : Kernel is the part of os. It act as interface between hardware and process of computer.
+
+*shell: shell is command interpreter of UNIX. . It act as interface between user and kernel.
+
+*user:
+
+->Booting Process: It is the process which takes place when we off the and on the computer.
+
+Files:
+
+->file is a collection of data
+
+->file content are treated as series of bytes
+
+->devices are also treated as special file, file size can grow dynamically.
+
+->internally each file is assigned a unique identification number called INODE(Information node 0r index node).
+
+File Naming Conventions:
+
+->maximum file length depends upon the kernel configuration(255)
+
+->file names are case sensitive
+
+->embedded spaces and tab names are not allowed
+
+-> A file consists of only one INODE.
+
+->INODE structure used to maintain information about the file
+
+Directory:
+
+->All the files are grouped together in the directory.
+
+->Factors that comes under etc,bin,usr,dev,lib,tmp,home.
+
+->bin under root is a executable file within os and bin under user is executable file install from third parties.
+
+Links-Hard Link:
+
+->hard links can be apply only on files.
+
+->it act as physical file
+
+-> if we delete the original file it will not effect the copy file
+
+Soft Link or Symbolic Link:
+
+->soft link can be apply for both file and directory
+
+->it act as short cut file
+
+-> if we delete the original file it will effect the copy file
+
+
+
+
+File Permissions in UNIX: There are three file permissions in unix
+
+*read=x
+
+*write=w
+
+*execute=x
+

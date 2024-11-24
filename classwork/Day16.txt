@@ -1,0 +1,1344 @@
+Data Structures
+
+
+*when a  member of a structure is a pointer which is pointing to itself it is called as self referential  pointer.(SRP)
+*we make realtionships to navigate.
+
+=>simple linked list
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int val;
+    struct node *ptr; //self referencial pointer
+}NODE;
+int main() {
+    //creating nodes & allocated memory
+    //memory is allocated by compiler 
+    NODE h1,h2,h3;
+    //ptr1 is used to navigate/traverse between nodes
+    NODE *ptr1=NULL;
+    //intialize values to each node
+    h1.val=10;
+    h1.ptr=NULL;
+    h2.val=20;
+    h2.ptr=NULL;
+    h3.val=30;
+    h3.ptr=NULL;
+    printf("\nAddress of h1 = %p",&h1);
+    printf("\nAddress of h2 = %p",&h2);
+    printf("\nAddress of h3 = %p",&h3);
+    printf("\nAddress of ptr1 = %p",&ptr1);
+    printf("\nh1.value = %d and ptr= %p",h1.val,h1.ptr);
+    printf("\nh2.value = %d and ptr= %p",h2.val,h2.ptr);
+    printf("\nh3.value = %d and ptr= %p",h3.val,h3.ptr);
+    printf("\nContents of ptr1/ptr1 is pointing to: %p",ptr1);
+    //Making Relationship (traverse)/creating linked list
+    h1.ptr=&h2;
+    h2.ptr=&h3;
+    //traverse or navigate
+    ptr1=&h1;  //ptr1 pointing to base address of list(first record)
+    printf("\n%d",h1.val);
+    printf("\n%d",ptr1->val);
+   // ptr1 = &h2;
+    ptr1 = h1.ptr;//ptr1 is pointing to h2
+    printf("\n%d",ptr1->val);
+    // ptr1 =  &h3;
+     ptr1 = h2.ptr; //from earlier line
+    printf("\n%d",ptr1->val);
+
+    printf("\n\n");
+    return 0;
+}
+
+=>Adding at between of a linked list(Version1)
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int val;
+    struct node *ptr; //self referencial pointer
+}NODE;
+int main() {
+    //creating nodes & allocated memory
+    //memory is allocated by compiler 
+    NODE h1,h2,h3,h4;
+    //ptr1 is used to navigate/traverse between nodes
+    NODE *ptr1=NULL;
+    //intialize values to each node
+    h1.val=10;
+    h1.ptr=NULL;
+    h2.val=20;
+    h2.ptr=NULL;
+    h3.val=30;
+    h3.ptr=NULL;
+    h4.val=40;
+    h4.ptr=NULL;
+    printf("\nAddress of h1 = %p",&h1);
+    printf("\nAddress of h2 = %p",&h2);
+    printf("\nAddress of h3 = %p",&h3);
+    printf("\nAddress of ptr1 = %p",&ptr1);
+    printf("\nh1.value = %d and ptr= %p",h1.val,h1.ptr);
+    printf("\nh2.value = %d and ptr= %p",h2.val,h2.ptr);
+    printf("\nh3.value = %d and ptr= %p",h3.val,h3.ptr);
+    printf("\nContents of ptr1/ptr1 is pointing to: %p",ptr1);
+    //Making Relationship (traverse)/creating linked list
+    h1.ptr=&h2;
+    h2.ptr=&h3;
+    //traverse or navigate
+    ptr1=&h1;  //ptr1 pointing to base address of list(first record)
+    printf("\n%d",h1.val);
+    printf("\n%d",ptr1->val);
+   // ptr1 = &h2;
+    ptr1 = h1.ptr;//ptr1 is pointing to h2
+    printf("\n%d",ptr1->val);
+    // ptr1 =  &h3;
+     ptr1 = h2.ptr; //from earlier line
+    printf("\n%d",ptr1->val);
+    //inserting new node h4 between h1 and h4
+    h1.ptr=&h4;
+    h4.ptr=&h2;
+    //again ptr1 is pointing to BA of list
+    ptr1=&h1;
+    printf("\nNew list is:\n");
+    printf("\n%d",ptr1->val);
+    
+    ptr1=h1.ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=h4.ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=h2.ptr;
+    printf("\n%d",ptr1->val);
+ 
+    ptr1=h3.ptr;
+    if(ptr1==NULL)
+      printf("NULL\n");
+    else
+      printf("\n%d",ptr1->val);
+    
+    
+    
+    printf("\n\n");
+    return 0;
+}
+
+=>#include <stdio.h>(Version2)
+#include<stdlib.h>
+typedef struct node
+{
+    int val;
+    struct node *ptr; //self referencial pointer
+}NODE;
+int main() {
+    //creating nodes & allocated memory
+    //memory is allocated by compiler 
+    NODE h1,h2,h3,h4;
+    //ptr1 is used to navigate/traverse between nodes
+    NODE *ptr1=NULL;
+    //intialize values to each node
+    h1.val=10;
+    h1.ptr=NULL;
+    h2.val=20;
+    h2.ptr=NULL;
+    h3.val=30;
+    h3.ptr=NULL;
+    h4.val=40;
+    h4.ptr=NULL;
+    printf("\nAddress of h1 = %p",&h1);
+    printf("\nAddress of h2 = %p",&h2);
+    printf("\nAddress of h3 = %p",&h3);
+    printf("\nAddress of ptr1 = %p",&ptr1);
+    printf("\nh1.value = %d and ptr= %p",h1.val,h1.ptr);
+    printf("\nh2.value = %d and ptr= %p",h2.val,h2.ptr);
+    printf("\nh3.value = %d and ptr= %p",h3.val,h3.ptr);
+    printf("\nContents of ptr1/ptr1 is pointing to: %p",ptr1);
+    //Making Relationship (traverse)/creating linked list
+    h1.ptr=&h2;
+    h2.ptr=&h3;
+    //traverse or navigate
+    ptr1=&h1;  //ptr1 pointing to base address of list(first record)
+    printf("\n%d",h1.val);
+    printf("\n%d",ptr1->val);
+   // ptr1 = &h2;
+    //ptr1 = h1.ptr;//ptr1 is pointing to h2
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    // ptr1 =  &h3;
+     //ptr1 = h2.ptr; //from earlier line
+     ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    //inserting new node h4 between h1 and h4
+    h1.ptr=&h4;
+    h4.ptr=&h2;
+    //again ptr1 is pointing to BA of list
+    ptr1=&h1;
+    printf("\nNew list is:\n");
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    if(ptr1==NULL)
+      printf("\nNULL\n");
+    else
+      printf("\n%d",ptr1->val);
+    
+    
+    
+    printf("\n\n");
+    return 0;
+}
+
+=>#include <stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int val;
+    struct node *ptr; //self referencial pointer
+}NODE;
+int main() {
+    //creating nodes & allocated memory
+    //memory is allocated by compiler 
+    NODE h1,h2,h3,h4;
+    //ptr1 is used to navigate/traverse between nodes
+    NODE *ptr1=NULL;
+    //intialize values to each node
+    h1.val=10;
+    h1.ptr=NULL;
+    h2.val=20;
+    h2.ptr=NULL;
+    h3.val=30;
+    h3.ptr=NULL;
+    h4.val=40;
+    h4.ptr=NULL;
+    printf("\nAddress of h1 = %p",&h1);
+    printf("\nAddress of h2 = %p",&h2);
+    printf("\nAddress of h3 = %p",&h3);
+    printf("\nAddress of ptr1 = %p",&ptr1);
+    printf("\nh1.value = %d and ptr= %p",h1.val,h1.ptr);
+    printf("\nh2.value = %d and ptr= %p",h2.val,h2.ptr);
+    printf("\nh3.value = %d and ptr= %p",h3.val,h3.ptr);
+    printf("\nContents of ptr1/ptr1 is pointing to: %p",ptr1);
+    //Making Relationship (traverse)/creating linked list
+    h1.ptr=&h2;
+    h2.ptr=&h3;
+    //traverse or navigate
+    ptr1=&h1;  //ptr1 pointing to base address of list(first record)
+    printf("\n%d",h1.val);
+    printf("\n%d",ptr1->val);
+   // ptr1 = &h2;
+    //ptr1 = h1.ptr;//ptr1 is pointing to h2
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    // ptr1 =  &h3;
+     //ptr1 = h2.ptr; //from earlier line
+     ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    //inserting new node h4 between h1 and h4
+    h1.ptr=&h4;
+    h4.ptr=&h2;
+    //again ptr1 is pointing to BA of list
+    ptr1=&h1;
+    printf("\nNew list is:\n");
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+    
+    ptr1=ptr1->ptr;
+    if(ptr1==NULL)
+      printf("\nNULL\n");
+    else
+      printf("\n%d",ptr1->val);
+      
+      printf("\nNew list using loops:\n");
+      ptr1=&h1;
+      while(ptr1!=NULL)
+      {
+          printf("%d->",ptr1->val);
+          ptr1=ptr1->ptr;
+      }
+      printf("NULL");
+    
+    
+    
+    printf("\n\n");
+    return 0;
+}
+
+=>Adding at the end of the linked list
+
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int val;
+    struct node *ptr; //self referencial pointer
+}NODE;
+int main() {
+    //creating nodes & allocated memory
+    //memory is allocated by compiler
+    NODE h1,h2,h3,h4,h5;
+    //ptr1 is used to navigate/traverse between nodes
+    NODE *ptr1=NULL;
+    //intialize values to each node
+    h1.val=10;
+    h1.ptr=NULL;
+ 
+    h2.val=20;
+    h2.ptr=NULL;
+ 
+    h3.val=30;
+    h3.ptr=NULL;
+ 
+    printf("\nAddress of h1 = %p",&h1);
+    printf("\nAddress of h2 = %p",&h2);
+    printf("\nAddress of h3 = %p",&h3);
+    printf("\nAddress of ptr1 = %p",&ptr1);
+ 
+    printf("\nh1.value = %d and ptr= %p",h1.val,h1.ptr);
+    printf("\nh2.value = %d and ptr= %p",h2.val,h2.ptr);
+    printf("\nh3.value = %d and ptr= %p",h3.val,h3.ptr);
+ 
+    printf("\nContents of ptr1/ptr1 is pointing to: %p",ptr1);
+ 
+    //Making Relationship (traverse)/creating linked list
+    h1.ptr=&h2;
+    h2.ptr=&h3;
+ 
+    //traverse or navigate
+    ptr1=&h1;  //ptr1 pointing to base address of list(first record)
+    printf("\n%d",h1.val);
+    printf("\n%d",ptr1->val);
+ 
+   // ptr1 = &h2;
+  //  ptr1 = h1.ptr;//ptr1 is pointing to h2
+    printf("\nptr1=>h2\n");
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+// ptr1 =  &h3;
+    // ptr1 = h2.ptr; //from earlier line
+     ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+ 
+    h4.val=40;
+   h4.ptr=NULL;
+ 
+   //inserting new node h4 between h1 and h2
+   h1.ptr=&h4;
+   h4.ptr=&h2;
+ 
+   //again ptr1 is pointing to base address of list
+   ptr1= &h1;
+   printf("\nNew list is\n");
+   printf("\n%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+    ptr1=ptr1->ptr;
+    if(ptr1==NULL)
+        printf("NULL");
+    else
+        printf("\n%d",ptr1->val);
+ 
+    printf("\nNew list using loops\n");
+    ptr1 = &h1;
+    while(ptr1 != NULL)
+    {
+        printf("%d->",ptr1->val);
+        ptr1=ptr1->ptr;
+    }
+    printf("NULL");
+ 
+    h5.val=50;
+    h5.ptr=NULL;
+ 
+    //inserting new node at last
+    h3.ptr=&h5;
+    ptr1= &h1;
+      printf("\nNew list is\n");
+   printf("\n%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+    ptr1=ptr1->ptr;
+    if(ptr1==NULL)
+        printf("NULL");
+    else
+        printf("\n%d",ptr1->val);
+ 
+    printf("\nNew list using loops\n");
+    ptr1 = &h1;
+    while(ptr1 != NULL)
+    {
+        printf("%d->",ptr1->val);
+        ptr1=ptr1->ptr;
+    }
+    printf("NULL");
+    ptr1= &h1;
+   printf("\nNew list is\n");
+   printf("\n%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+    ptr1=ptr1->ptr;
+    if(ptr1==NULL)
+        printf("NULL");
+      else
+        printf("\n%d",ptr1->val);
+ 
+    printf("\nNew list using loops\n");
+    ptr1 = &h1;
+    while(ptr1 != NULL)
+    {
+        printf("%d->",ptr1->val);
+        ptr1=ptr1->ptr;
+    }
+    printf("NULL");
+ 
+ 
+    printf("\n\n");
+    return 0;
+}
+
+
+=>
+Adding at begining of linked list
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int val;
+    struct node *ptr; //self referencial pointer
+}NODE;
+int main() {
+    //creating nodes & allocated memory
+    //memory is allocated by compiler
+    NODE h1,h2,h3,h4,h5,h6;
+    //ptr1 is used to navigate/traverse between nodes
+    NODE *ptr1=NULL;
+    //intialize values to each node
+    h1.val=10;
+    h1.ptr=NULL;
+ 
+    h2.val=20;
+    h2.ptr=NULL;
+ 
+    h3.val=30;
+    h3.ptr=NULL;
+    
+    h6.val=60;
+    h6.ptr=NULL;
+ 
+    printf("\nAddress of h1 = %p",&h1);
+    printf("\nAddress of h2 = %p",&h2);
+    printf("\nAddress of h3 = %p",&h3);
+    printf("\nAddress of ptr1 = %p",&ptr1);
+ 
+    printf("\nh1.value = %d and ptr= %p",h1.val,h1.ptr);
+    printf("\nh2.value = %d and ptr= %p",h2.val,h2.ptr);
+    printf("\nh3.value = %d and ptr= %p",h3.val,h3.ptr);
+ 
+    printf("\nContents of ptr1/ptr1 is pointing to: %p",ptr1);
+ 
+    //Making Relationship (traverse)/creating linked list
+    h1.ptr=&h2;
+    h2.ptr=&h3;
+ 
+    //traverse or navigate
+    h6.ptr=&h1;
+    ptr1=&h6;  //ptr1 pointing to base address of list(first record)
+    printf("\n%d",h6.val);
+    printf("\n%d",ptr1->val);
+ 
+   // ptr1 = &h2;
+  //  ptr1 = h1.ptr;//ptr1 is pointing to h2
+    printf("\nptr1=>h2\n");
+    ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+// ptr1 =  &h3;
+    // ptr1 = h2.ptr; //from earlier line
+     ptr1=ptr1->ptr;
+    printf("\n%d",ptr1->val);
+ 
+    h4.val=40;
+   h4.ptr=NULL;
+ 
+   //inserting new node h4 between h1 and h2
+   h1.ptr=&h4;
+   h4.ptr=&h2;
+ 
+   //again ptr1 is pointing to base address of list
+   h6.ptr=&h1;
+   ptr1= &h6;
+ 
+    
+
+   printf("\nNew list is\n");
+   printf("\n%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+   ptr1=ptr1->ptr;
+   printf("%d->",ptr1->val);
+ 
+    ptr1=ptr1->ptr;
+    if(ptr1==NULL)
+        printf("NULL");
+    else
+        printf("\n%d",ptr1->val);
+    printf("\n\n");
+    return 0;
+}
+
+=>Appending a node at the end of the list using functions
+*if the list is present it will traverse till end and appends at last
+
+#include <stdio.h>
+#include<stdlib.h>
+ 
+typedef struct node{
+    int val;
+    struct node *ptr;
+}NODE;
+ 
+void printlist(NODE *);
+void append(NODE *,NODE *);
+ 
+void printlist(NODE *head){
+    printf("list is: ");
+    while(head != NULL){
+        printf("%d->",head->val);
+        head = head->ptr;
+    }
+    if(head == NULL)
+    printf("NULL\n");
+}
+ 
+void append(NODE *head,NODE *nn){
+    printf("append node: ");
+    while(head ->ptr != NULL){
+        printf("%d->",head->val);
+        head = head->ptr;
+    }
+    printf("\n%d",head->val);
+     printf("\n%p",head->val);
+    head->ptr = nn;
+}
+ 
+int main() {
+    // Write C code here
+    NODE h1,h2,h3,h4;
+    h1.val = 10;
+    h1.ptr = NULL;
+    h2.val = 20;
+    h2.ptr = NULL;
+    h3.val = 30;
+    h3.ptr = NULL;
+    h4.val = 40;
+    h4.ptr = NULL;
+    NODE *ptr1= NULL;
+    ptr1 = &h1;
+    h1.ptr = &h2;
+    h2.ptr = &h3;
+    h3.ptr = &h4;
+    ptr1=&h1;
+    printlist(ptr1);
+    append(ptr1,&h4);
+ 
+    return 0;
+}
+*if the list is not present to append, then the appending node will be the new list
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+	int val;
+	struct node *ptr; //Self referencial pointer (SELF/SRP)
+}NODE;
+
+void printList(NODE *);
+NODE* appendNode(NODE *,NODE *);
+
+int main()
+{
+	//creating nodes & allocated mem
+	NODE h1,h2,h3,h4;
+
+	//ptr1 is used to navigate/travese betwn nodes
+	NODE *head=NULL;
+
+	h4.val = 40;
+	h4.ptr = NULL;
+
+	head = appendNode(head,&h4);
+
+	//traversing the list
+	printList(head);
+
+	
+	h1.val = 10;
+	h1.ptr = NULL;
+
+	h2.val = 20;
+	h2.ptr = NULL;
+	h3.val = 30;
+	h3.ptr = NULL;
+
+	head = appendNode(head,&h1);
+
+	appendNode(head,&h2);
+	appendNode(head,&h3);
+	//traversing the list
+	printList(head);
+
+
+	printf("\n\n");
+
+	return 0;
+
+}
+
+void printList(NODE *head)
+{
+	printf("\nlist using loops and function\n");
+	while(head!= NULL)
+	{
+		printf("%d->",head->val);
+		head = head->ptr;	
+	}
+	printf("NULL");
+}
+
+NODE *appendNode(NODE *head,NODE *nn)
+{
+	printf("\nIn appendNode\n");
+	NODE *temp = head;
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		printf("\nList is not empty\n");
+		while(head->ptr!= NULL)
+		{
+			printf("%d->",head->val);
+			head = head->ptr;	
+		}
+		
+		head->ptr = nn; //adding node to the end of the list
+	}
+	head = temp; //head is again pointed to the BA
+
+	return head;
+}
+
+
+=>#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+	int val;
+	struct node *ptr; //Self referencial pointer (SELF/SRP)
+}NODE;
+
+void printList(NODE *);
+NODE* appendNode(NODE *,NODE *);
+NODE *addNodeBeg(NODE *, NODE *);
+
+
+int main()
+{
+	//creating nodes & allocated mem
+	NODE h1,h2,h3,h4;
+
+	//ptr1 is used to navigate/travese betwn nodes
+	NODE *head=NULL;
+
+	h4.val = 40;
+	h4.ptr = NULL;
+
+	//head = appendNode(head,&h4);
+
+	//traversing the list
+	printList(head);
+
+	
+	h1.val = 10;
+	h1.ptr = NULL;
+
+	h2.val = 20;
+	h2.ptr = NULL;
+	h3.val = 30;
+	h3.ptr = NULL;
+
+	/*head = appendNode(head,&h1);
+
+	appendNode(head,&h2);
+	appendNode(head,&h3);
+	*/
+
+	head = addNodeBeg(head,&h1);
+	//traversing the list
+	printList(head);
+
+	head = addNodeBeg(head,&h2);
+	//traversing the list
+	printList(head);
+
+
+	printf("\n\n");
+
+	return 0;
+
+}
+
+void printList(NODE *head)
+{
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		return;
+	}
+	printf("\nlist using loops and function\n");
+	while(head!= NULL)
+	{
+		printf("%d->",head->val);
+		head = head->ptr;	
+	}
+	printf("NULL");
+}
+
+NODE *appendNode(NODE *head,NODE *nn)
+{
+	printf("\nIn appendNode\n");
+	NODE *temp = head;
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		printf("\nList is not empty\n");
+		while(head->ptr!= NULL)
+		{
+			printf("%d->",head->val);
+			head = head->ptr;	
+		}
+		
+		head->ptr = nn; //adding node to the end of the list
+	}
+	head = temp; //head is again pointed to the BA
+
+	return head;
+}
+
+
+NODE *addNodeBeg(NODE *head, NODE *nn)
+{
+	NODE *temp = head;
+	printf("\nIn addNodeBeg\n");
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		nn->ptr = head;
+		head = nn;     // making the head point to the nn(BA of new list)
+	}
+	return head; //return the BA of the list
+}
+
+=>TO delete the node using key
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+	int val;
+	struct node *ptr; //Self referencial pointer (SELF/SRP)
+}NODE;
+
+void printList(NODE *);
+NODE* appendNode(NODE *,NODE *);
+NODE *addNodeBeg(NODE *, NODE *);
+int delNode(NODE *, int );
+
+
+int main()
+{
+	//creating nodes & allocated mem
+	NODE h1,h2,h3,h4;
+
+	//ptr1 is used to navigate/travese betwn nodes
+	NODE *head=NULL;
+
+	h4.val = 40;
+	h4.ptr = NULL;
+
+	//head = appendNode(head,&h4);
+
+	//traversing the list
+	printList(head);
+
+	
+	h1.val = 10;
+	h1.ptr = NULL;
+
+	h2.val = 20;
+	h2.ptr = NULL;
+	h3.val = 30;
+	h3.ptr = NULL;
+	
+
+	/*head = appendNode(head,&h1);
+
+	appendNode(head,&h2);
+	appendNode(head,&h3);
+	*/
+	head = addNodeBeg(head,&h4);
+	//traversing the list
+	printList(head);
+
+	head = addNodeBeg(head,&h3);
+	//traversing the list
+	printList(head);
+
+	head = addNodeBeg(head,&h2);
+	//traversing the list
+	printList(head);
+	head = addNodeBeg(head,&h1);
+	//traversing the list
+	printList(head);
+	
+	
+	if(delNode(head,30)==0)
+	  printf("\nNode deleted\n");
+	 else
+	   printf("\nKey not found in the list\n");
+	printList(head);
+	
+
+
+	printf("\n\n");
+
+	return 0;
+
+}
+
+void printList(NODE *head)
+{
+    
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		return;
+	}
+	printf("\nlist using loops and function\n");
+	while(head!= NULL)
+	{
+		printf("%d->",head->val);
+		head = head->ptr;	
+	}
+	printf("NULL");
+}
+
+NODE *appendNode(NODE *head,NODE *nn)
+{
+	printf("\nIn appendNode\n");
+	NODE *temp = head;
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		printf("\nList is not empty\n");
+		while(head->ptr!= NULL)
+		{
+			printf("%d->",head->val);
+			head = head->ptr;	
+		}
+		
+		head->ptr = nn; //adding node to the end of the list
+	}
+	head = temp; //head is again pointed to the BA
+
+	return head;
+}
+
+
+NODE *addNodeBeg(NODE *head, NODE *nn)
+{
+	NODE *temp = head;
+	printf("\nIn addNodeBeg\n");
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		nn->ptr = head;
+		head = nn;     // making the head point to the nn(BA of new list)
+	}
+	return head; //return the BA of the list
+
+}
+
+int delNode(NODE *head, int key)
+{
+    int flag=1;
+    NODE *temp=head;
+    while(head!=NULL)
+    {
+        if(head->val==key)
+        {  
+            //for found
+            flag=0;
+            break;
+        }
+        temp=head;
+        head=head->ptr;
+    }
+    if(flag==0)
+    { 
+        printf("\nGunashree->%d",temp->val);
+        printf("\npooja->%d",head->val);
+        temp->ptr=head->ptr;
+    }
+    return flag;
+    
+}
+
+=>dynamic allocation of single linked list(code optimization)
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+	int val;
+	struct node *next; //Self referencial pointer (SELF/SRP)
+}NODE;
+
+void printList(NODE *);
+void printListAdd(NODE *);
+NODE* appendNode(NODE *,NODE *);
+NODE *addNodeBeg(NODE *, NODE *);
+int delNode(NODE *, int);
+
+
+int main()
+{
+	NODE *nn=NULL;
+	NODE *head=NULL,*temp=NULL;
+	int ch;
+	do
+	{
+		nn = (NODE *)malloc(sizeof(NODE));
+		printf("\nNew Node Add=%p",nn);
+		printf("\nEnter the value of New Node: ");
+		scanf("%d",&nn->val);
+		nn->next = NULL;
+
+		head = appendNode(head,nn);
+		if (head == NULL)
+		{
+			printf("\nUnable to create Node\n");
+			printf("\nMem allocation failed\n");
+			return 1;
+		}
+
+		printf("\nDo you want to add new node(1/0): ");
+		scanf("%d",&ch);
+	}while(ch !=0);
+	
+	printListAdd(head);
+
+	printf("\n\n");
+
+	return 0;
+
+}
+
+void printList(NODE *head)
+{
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		return;
+	}
+	printf("\nlist using loops and function\n");
+	while(head!= NULL)
+	{
+		printf("%d->",head->val);
+		head = head->next;	
+	}
+	printf("NULL");
+}
+
+
+void printListAdd(NODE *head)
+{
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		return;
+	}
+	printf("\nlist using loops and function\n");
+	while(head!= NULL)
+	{
+		printf("\n%d->%p",head->val,head->next);
+		head = head->next;	
+	}
+	printf("NULL");
+}
+
+
+
+
+NODE *appendNode(NODE *head,NODE *nn)
+{
+	printf("\nIn appendNode\n");
+	NODE *temp = head;
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		printf("\nList is not empty\n");
+		while(head->next!= NULL)
+		{
+			printf("%d->",head->val);
+			head = head->next;	
+		}
+		
+		head->next = nn; //adding node to the end of the list
+	}
+	head = temp; //head is again pointed to the BA
+
+	return head;
+}
+
+
+NODE *addNodeBeg(NODE *head, NODE *nn)
+{
+	NODE *temp = head;
+	printf("\nIn addNodeBeg\n");
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		nn->next = head;
+		head = nn;     // making the head point to the nn(BA of new list)
+	}
+	return head; //return the BA of the list
+}
+
+
+int delNode(NODE *head, int key)
+{
+	int flag = 1;
+
+	NODE *temp = head;
+
+
+	while(head!=NULL)
+	{
+		if(head->val == key)
+		{
+			//found
+			flag = 0;
+			break;
+		}
+		temp = head;
+		head = head->next;
+	}	
+
+	if(flag == 0)
+	{
+		
+		temp->next = head->next;
+	}
+
+	return flag;
+}
+
+Assignment:while deleting node it is begning or ending we need to consider
+free the memory(Each node)
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+	int val;
+	struct node *next; //Self referencial pointer (SELF/SRP)
+}NODE;
+
+
+NODE *createNode(NODE *);
+int dispMainMenu();
+void printList(NODE *);
+NODE* appendNode(NODE *,NODE *);
+NODE *addNodeBeg(NODE *, NODE *);
+int delNode(NODE *, int);
+
+
+int main()
+{
+	NODE *nn=NULL;
+	NODE *head=NULL,*temp=NULL;
+	int flag=0;
+	int key=0;
+
+	while(1)
+	{
+		switch(dispMainMenu())
+		{
+			case 1:
+					nn = createNode(nn);
+					head = addNodeBeg(head,nn);
+					break;
+			case 2:
+					nn = createNode(nn);
+					head = appendNode(head,nn);
+					break;
+			case 3:
+					printf("\nEnter the key of the node: ");
+					scanf("%d",&key);
+					delNode(head,key);
+					break;
+			case 4:
+					printList(head);
+					break;
+			case 5:
+					flag = 1;
+					break;
+			default:
+					printf("\nEnter the correct Choice");
+					break;
+		}
+		if(flag == 1)
+			break;
+	}
+	
+	printf("\n\n");
+
+	return 0;
+
+}
+
+NODE *createNode(NODE *nn)
+{
+	nn = (NODE *)malloc(sizeof(NODE));
+	printf("\nEnter the value of New Node: ");
+	scanf("%d",&nn->val);
+	nn->next = NULL;
+	return nn;
+}
+
+
+int dispMainMenu()
+{
+	int ch;
+	printf("\nLinked List Menu\n");
+	printf("\nPress,");
+	printf("\n1. Add Node in Begning");
+	printf("\n2. Add Node to the End");
+	printf("\n3. Delete a Node");
+	printf("\n4. Print List");
+	printf("\n5. Exit");
+	printf("\nChoice: ");
+	scanf("%d",&ch);
+
+	return ch;
+}
+
+
+void printList(NODE *head)
+{
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		return;
+	}
+	printf("\nList is\n===================================\n");
+	while(head!= NULL)
+	{
+		printf("%d->",head->val);
+		head = head->next;	
+	}
+	printf("NULL");
+	printf("\n\n===================================\n");
+}
+
+
+
+NODE *appendNode(NODE *head,NODE *nn)
+{
+	// printf("\nIn appendNode\n");
+	NODE *temp = head;
+
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		// printf("\nList is not empty\n");
+		while(head->next!= NULL)
+		{
+			// printf("%d->",head->val);
+			head = head->next;	
+		}
+		
+		head->next = nn; //adding node to the end of the list
+	}
+	head = temp; //head is again pointed to the BA
+
+	return head;
+}
+
+
+NODE *addNodeBeg(NODE *head, NODE *nn)
+{
+	NODE *temp = head;
+	// printf("\nIn addNodeBeg\n");
+	if(head == NULL)
+	{
+		//the list is empty
+		printf("\nList is Empty\n");
+		head = nn;
+		temp = nn;
+	}
+	else
+	{
+		nn->next = head;
+		head = nn;     // making the head point to the nn(BA of new list)
+	}
+	return head; //return the BA of the list
+}
+
+
+int delNode(NODE *head, int key)
+{
+	int flag = 1;
+
+	NODE *temp = head;
+
+
+	while(head!=NULL)
+	{
+		if(head->val == key)
+		{
+			//found
+			flag = 0;
+			break;
+		}
+		temp = head;
+		head = head->next;
+	}	
+
+	if(flag == 0)
+	{
+		
+		temp->next = head->next;
+	}
+
+	return flag;
+
+
+}
+
+Double Linked List:
+Assignment:How to delete a node
+
+circular Linked List:
+Assignment:How to Add and delete a node
